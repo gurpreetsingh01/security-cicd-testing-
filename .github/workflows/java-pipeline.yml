@@ -38,7 +38,7 @@ jobs:
           distribution: 'temurin'
 
       - name: Verify JAVA_HOME
-        run: echo $JAVA_HOME   
+        run: echo "JAVA_HOME is set to $JAVA_HOME"
 
       - name: Install Maven
         run: sudo apt-get install maven -y
