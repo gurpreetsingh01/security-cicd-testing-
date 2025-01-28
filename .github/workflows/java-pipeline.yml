@@ -90,5 +90,3 @@ jobs:
         run: |
           docker tag my-java-app:latest ${{ secrets.DOCKER_HUB_USERNAME }}/my-java-app:latest
           docker push ${{ secrets.DOCKER_HUB_USERNAME }}/my-java-app:latest
-
-        kubectl apply -f k8s/deployment.yaml
