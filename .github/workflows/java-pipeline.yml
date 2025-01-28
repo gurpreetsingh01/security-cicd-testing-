@@ -49,6 +49,9 @@ jobs:
       - name: Run Maven Dependency Tree
         run: mvn dependency:tree -DoutputType=dot --batch-mode --non-recursive --file="pom.xml"
 
+      - name: Debug Maven Dependency Tree
+        run: DEBUG=* mvn dependency:tree -DoutputType=dot --batch-mode --non-recursive --file="pom.xml"  
+
   security-scan:
     runs-on: ubuntu-latest
     needs: test
