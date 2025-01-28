@@ -21,15 +21,6 @@
         </dependency>
     </dependencies>
 
-<build>
-    <plugins>
-        <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-dependency-plugin</artifactId>
-            <version>3.3.0</version> <!-- Use the latest stable version -->
-        </plugin>
-    </plugins>
-</build>
          
     <build>
         <plugins>
@@ -42,6 +33,11 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.3.0</version> <!-- Ensure version is 2.2 or higher -->
+        </plugin>     
         </plugins>
     </build>
 </project>
