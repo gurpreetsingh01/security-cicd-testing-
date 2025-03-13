@@ -56,13 +56,16 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Run SAST with Snyk
-        uses: snyk/actions/java@v3
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
         with:
-          command: test
-          args: --severity-threshold=high
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+          image-ref: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:sha-${{ github.sha }}
+          format: 'table'
+          exit-code: '1'
+          ignore-unfixed: true
+          vuln-type: 'os,library'
+          severity: 'CRITICAL,HIGH'
+         
 
       - name: Run Dependency Scanning with OWASP Dependency-Check
         run: |
