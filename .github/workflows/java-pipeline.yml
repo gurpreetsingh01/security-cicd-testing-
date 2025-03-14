@@ -13,8 +13,7 @@ env:
   DOCKER_IMAGE: 'test-java-app'
   DOCKER_TAG: 'latest'
   DOCKERHUB_USERNAME: 'gsmehra01'
-  DOCKERHUB_REPO: 'java-trivy
-
+  DOCKERHUB_REPO: 'java-trivy'
   SEVERITY_LEVEL: 'CRITICAL,HIGH'
 
 jobs:
