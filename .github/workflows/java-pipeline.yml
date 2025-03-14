@@ -12,6 +12,9 @@ env:
   JAVA_VERSION: '17'
   DOCKER_IMAGE: 'test-java-app'
   DOCKER_TAG: 'latest'
+  DOCKERHUB_USERNAME: 'gsmehra01'
+  DOCKERHUB_REPO: 'java-trivy
+
   SEVERITY_LEVEL: 'CRITICAL,HIGH'
 
 jobs:
@@ -46,7 +49,7 @@ jobs:
       
       - name: Build Docker Image
         run: |
-          docker build -t ${{ env.DOCKER_IMAGE }}:${{ env.DOCKER_TAG }} -f ./Dockerfile .
+           docker build -t ${{ env.DOCKERHUB_USERNAME }}/${{ env.DOCKERHUB_REPO }}:${{ env.DOCKER_TAG }} .
 
       - name: Run Trivy Vulnerability Scan
         uses: aquasecurity/trivy-action@master
@@ -56,5 +59,5 @@ jobs:
           exit-code: 0
           severity: '${{ env.SEVERITY_LEVEL }}'
 
-      - name: Cleanup Docker Image
-        run: docker rmi ${{ env.DOCKER_IMAGE }}:${{ env.DOCKER_TAG }} || true
+      - name: Logout from Docker Hub
+        run: docker logout
