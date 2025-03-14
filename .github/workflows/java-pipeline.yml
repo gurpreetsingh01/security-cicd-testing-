@@ -32,10 +32,15 @@ jobs:
           distribution: 'temurin'
           java-version: ${{ env.JAVA_VERSION }}
 
+      - name: Install Maven
+        run: sudo apt-get update && sudo apt-get install -y maven
+  
+      - name: Verify Maven Installation
+        run: mvn -version
+  
       - name: Build Java Application
-        run: |
-          ./mvn clean package -DskipTests
-
+        run: mvn clean package -DskipTests
+      
       - name: Build Docker Image
         run: |
           docker build -t ${{ env.DOCKER_IMAGE }}:${{ env.DOCKER_TAG }} .
