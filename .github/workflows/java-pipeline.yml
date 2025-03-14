@@ -46,9 +46,14 @@ jobs:
       - name: Build Java Application
         run: mvn clean package -DskipTests
       
+      - name: Log in to Docker Hub
+        run: echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u "${{ env.DOCKERHUB_USERNAME }}" --password-stdin
+
+      
       - name: Build Docker Image
         run: |
            docker build -t ${{ env.DOCKERHUB_USERNAME }}/${{ env.DOCKERHUB_REPO }}:${{ env.DOCKER_TAG }} .
+           docker images
 
       - name: Run Trivy Vulnerability Scan
         uses: aquasecurity/trivy-action@master
@@ -57,6 +62,10 @@ jobs:
           format: 'table'
           exit-code: 0
           severity: '${{ env.SEVERITY_LEVEL }}'
+      
+      - name: Push Docker Image to Docker Hub
+        run: docker push ${{ env.DOCKERHUB_USERNAME }}/${{ env.DOCKER_IMAGE }}:${{ env.DOCKER_TAG }}
+    
 
       - name: Logout from Docker Hub
         run: docker logout
