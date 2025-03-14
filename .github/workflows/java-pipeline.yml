@@ -46,7 +46,7 @@ jobs:
       
       - name: Build Docker Image
         run: |
-          docker build -t ${{ env.DOCKER_IMAGE }}:${{ env.DOCKER_TAG }} -f ./Dockerfile .
+          docker build -t ${{ env.DOCKER_IMAGE }}:${{ env.DOCKER_TAG }} .
 
       - name: Run Trivy Vulnerability Scan
         uses: aquasecurity/trivy-action@master
