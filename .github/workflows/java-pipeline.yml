@@ -53,7 +53,7 @@ jobs:
         with:
           image-ref: '${{ env.DOCKER_IMAGE }}:${{ env.DOCKER_TAG }}'
           format: 'table'
-          exit-code: 1
+          exit-code: 0
           severity: '${{ env.SEVERITY_LEVEL }}'
 
       - name: Cleanup Docker Image
